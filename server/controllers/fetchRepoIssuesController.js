@@ -40,7 +40,7 @@ async function fetchRepoIssuesController(req, res) {
   } catch (error) {
     console.error(
       "Error fetching issues:",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
 
     return res.status(400).send({

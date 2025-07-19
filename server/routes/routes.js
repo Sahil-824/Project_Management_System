@@ -1,13 +1,24 @@
 const fetchRepoIssuesController = require("../controllers/fetchRepoIssuesController");
+const emailServicesController = require("../controllers/emailServiceController");
 const schema = require("../config/schema.json");
 const fetchPublicRepoCommits = require("../controllers/fetchCommitHistoryController");
 const fetchPublicRepos = require("../controllers/fetchPublicReposController");
 const fetchPublicRepoPullRequests = require("../controllers/fetchRepoPullRequest");
 async function routes(fastify) {
   fastify.post(
+    schema.githubApis["pullRequestFetch"].schema.url,
+    schema.githubApis["pullRequestFetch"],
+    fetchRepoIssuesController,
+  );
+  fastify.post(
+    schema.emailService.schema.url,
+    schema.emailService,
+    emailServicesController
+  );
+  fastify.post(    
     schema.githubApis["fetchIssuesList"].schema.url,
     schema.githubApis["fetchIssuesList"],
-    fetchRepoIssuesController,
+    fetchRepoIssuesController
   );
   fastify.post(
     schema.githubApis["fetchRepoLinks"].schema.url,
