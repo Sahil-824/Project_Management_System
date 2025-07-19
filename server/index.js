@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv/config");
 const fastify = require("fastify")({
   logger: true,
   bodyLimit: 10485760,

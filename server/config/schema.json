@@ -10,5 +10,19 @@
         }
       }
     }
+  },
+  "emailService": {
+    "schema": {
+      "url": "/api/sendEmail",
+      "body": {
+        "type": "object",
+        "properties": {
+          "emailId": {
+            "type": "string"
+          }
+        },
+        "required": ["emailId"]
+      }
+    }
   }
 }
