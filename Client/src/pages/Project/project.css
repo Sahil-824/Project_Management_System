@@ -1,0 +1,151 @@
+
+.app-content{
+   margin: 0;
+   padding: 0;
+}
+.project-details-container {
+  display: flex;
+  flex-direction: row;
+  padding: 40px;
+  gap: 40px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  min-width: 100vh;
+  box-sizing: border-box;
+}
+
+/* Main Left Section */
+.main-content {
+  flex: 3;
+}
+
+.project-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #1e1e1e;
+}
+
+.project-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.pr-section, .commit-section {
+  margin-bottom: 30px;
+}
+
+.pr-section h2, .commit-section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #1e1e1e;
+}
+
+.pr-item, .commit-item {
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pr-item span:first-child {
+  font-weight: 500;
+}
+
+.pr-status {
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  text-transform: capitalize;
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+/* PR status colors */
+.pr-item.open .pr-status {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.pr-item.merged .pr-status {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Commit styling */
+.commit-item p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.commit-item small {
+  color: #888;
+}
+
+/* Sidebar */
+.ticket-sidebar {
+  flex: 1.2;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.ticket-sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.ticket-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ticket-form label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+.ticket-form input,
+.ticket-form textarea,
+.ticket-form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  resize: none;
+}
+
+.ticket-form button {
+  padding: 12px;
+  background-color: #714fa1;
+  color: white;
+  border: none;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ticket-form button:hover {
+  background-color: #9260d8;
+}
+
+/* Responsive Layout */
+@media (max-width: 1024px) {
+  .project-details-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .main-content, .ticket-sidebar {
+    width: 100%;
+  }
+}
