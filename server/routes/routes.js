@@ -8,6 +8,8 @@ const {
   clientLogin,
   clientSignup,
 } = require("../controllers/loginSignupController.js");
+const createNewIssue = require("../controllers/createIssueController");
+const createPublicRepo = require("../controllers/createRepositoryLinkController");
 async function routes(fastify) {
   // fastify.post(
   //   schema.githubApis["pullRequestFetch"].schema.url,
@@ -17,27 +19,27 @@ async function routes(fastify) {
   fastify.post(
     schema.emailService.schema.url,
     schema.emailService,
-    emailServicesController,
+    emailServicesController
   );
   fastify.post(
     schema.githubApis["fetchIssuesList"].schema.url,
     schema.githubApis["fetchIssuesList"],
-    fetchRepoIssuesController,
+    fetchRepoIssuesController
   );
   fastify.post(
     schema.githubApis["fetchRepoLinks"].schema.url,
     schema.githubApis["fetchRepoLinks"],
-    fetchPublicRepos,
+    fetchPublicRepos
   );
   fastify.post(
     schema.githubApis["fetchCommitHistory"].schema.url,
     schema.githubApis["fetchCommitHistory"],
-    fetchPublicRepoCommits,
+    fetchPublicRepoCommits
   );
   fastify.post(
     schema.githubApis["fetchPullRequest"].schema.url,
     schema.githubApis["fetchPullRequest"],
-    fetchPublicRepoPullRequests,
+    fetchPublicRepoPullRequests
   );
 
   fastify.post(schema.clientLogin.schema.url, schema.clientLogin, clientLogin);
@@ -45,7 +47,17 @@ async function routes(fastify) {
   fastify.post(
     schema.clientSignup.schema.url,
     schema.clientSignup,
-    clientSignup,
+    clientSignup
+  );
+  fastify.post(
+    schema.githubApis["createNewIssue"].schema.url,
+    schema.githubApis["createNewIssue"],
+    createNewIssue
+  );
+  fastify.post(
+    schema.githubApis["createNewRepo"].schema.url,
+    schema.githubApis["createNewRepo"],
+    createPublicRepo
   );
 }
 
