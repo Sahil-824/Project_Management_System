@@ -54,5 +54,39 @@
         "required": ["emailId"]
       }
     }
+  },
+  "clientLogin": {
+    "schema": {
+      "url": "/api/clientLogin",
+      "body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": ["email", "password"]
+      }
+    }
+  },
+  "clientSignup": {
+    "schema": {
+      "url": "/api/clientSignup",
+      "body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": ["email", "password"]
+      }
+    }
   }
 }

@@ -3,11 +3,11 @@ const fastify = require("fastify")({
   logger: true,
   bodyLimit: 10485760,
 });
-
 const path = require("path");
 const routesRegister = require("./routes/routes-register.json");
 global.rootDir = __dirname;
-// require("•/connector/mongo. connector");
+const connectDB = require("./connector/mongoConnector");
+connectDB();
 fastify.register(require("@fastify/multipart"));
 fastify.register(require("@fastify/cors"), {});
 routesRegister.forEach((route) =>
