@@ -11,11 +11,11 @@ const {
 const createNewIssue = require("../controllers/createIssueController");
 const createPublicRepo = require("../controllers/createRepositoryLinkController");
 async function routes(fastify) {
-  // fastify.post(
-  //   schema.githubApis["pullRequestFetch"].schema.url,
-  //   schema.githubApis["pullRequestFetch"],
-  //   fetchRepoIssuesController,
-  // );
+  fastify.post(
+    schema.githubApis["pullRequestFetch"].schema.url,
+    schema.githubApis["pullRequestFetch"],
+    fetchRepoIssuesController
+  );
   fastify.post(
     schema.emailService.schema.url,
     schema.emailService,
