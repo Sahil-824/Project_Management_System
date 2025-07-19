@@ -15,36 +15,37 @@ const {
 const authVerification = require("../middlewares/authVerification.js");
 const createNewIssue = require("../controllers/createIssueController");
 const createPublicRepo = require("../controllers/createRepositoryLinkController");
+const fetchProjectById = require("../controllers/fetchProjectDetailsController.js");
 async function routes(fastify) {
-  fastify.post(
-    schema.githubApis["pullRequestFetch"].schema.url,
-    schema.githubApis["pullRequestFetch"],
-    fetchRepoIssuesController
-  );
+  // fastify.post(
+  //   schema.githubApis["pullRequestFetch"].schema.url,
+  //   schema.githubApis["pullRequestFetch"],
+  //   fetchRepoIssuesController,
+  // );
   fastify.post(
     schema.emailService.schema.url,
     schema.emailService,
-    emailServicesController
+    emailServicesController,
   );
   fastify.post(
     schema.githubApis["fetchIssuesList"].schema.url,
     schema.githubApis["fetchIssuesList"],
-    fetchRepoIssuesController
+    fetchRepoIssuesController,
   );
   fastify.post(
     schema.githubApis["fetchRepoLinks"].schema.url,
     schema.githubApis["fetchRepoLinks"],
-    fetchPublicRepos
+    fetchPublicRepos,
   );
   fastify.post(
     schema.githubApis["fetchCommitHistory"].schema.url,
     schema.githubApis["fetchCommitHistory"],
-    fetchPublicRepoCommits
+    fetchPublicRepoCommits,
   );
   fastify.post(
     schema.githubApis["fetchPullRequest"].schema.url,
     schema.githubApis["fetchPullRequest"],
-    fetchPublicRepoPullRequests
+    fetchPublicRepoPullRequests,
   );
 
   fastify.post(schema.clientLogin.schema.url, schema.clientLogin, clientLogin);
@@ -52,17 +53,17 @@ async function routes(fastify) {
   fastify.post(
     schema.clientSignup.schema.url,
     schema.clientSignup,
-    clientSignup
+    clientSignup,
   );
   fastify.post(
     schema.githubApis["createNewIssue"].schema.url,
     schema.githubApis["createNewIssue"],
-    createNewIssue
+    createNewIssue,
   );
   fastify.post(
     schema.githubApis["createNewRepo"].schema.url,
     schema.githubApis["createNewRepo"],
-    createPublicRepo
+    createPublicRepo,
   );
 
   fastify.route({
@@ -77,6 +78,12 @@ async function routes(fastify) {
     schema.addProjectMembers.schema.url,
     schema.addProjectMembers,
     addProjectMembers,
+  );
+
+  fastify.post(
+    schema.fetchProjectDetails.schema.url,
+    schema.fetchProjectDetails,
+    fetchProjectById,
   );
 }
 

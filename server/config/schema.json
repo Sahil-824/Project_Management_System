@@ -170,5 +170,13 @@
         "required": ["projectId", "member"]
       }
     }
+  },
+  "fetchProjectDetails": {
+    "schema": {
+      "url": "/api/fetchProjectDetails",
+      "body": {
+        "type": "object"
+      }
+    }
   }
 }
