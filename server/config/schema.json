@@ -1,13 +1,57 @@
 {
   "githubApis": {
-    "pullRequestFetch": {
+    "fetchIssuesList": {
       "schema": {
-        "url": "/github/pullRequestFetch",
+        "url": "/github/fetchIssuesList",
         "body": {
           "type": "object",
           "properties": {},
           "required": []
         }
+      }
+    },
+    "fetchCommitHistory": {
+      "schema": {
+        "url": "/github/fetchCommitHistory",
+        "body": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    },
+    "fetchRepoLinks": {
+      "schema": {
+        "url": "/github/fetchRepoLinks",
+        "body": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    },
+    "fetchPullRequest": {
+      "schema": {
+        "url": "/github/fetchPullRequest",
+        "body": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    }
+  },
+  "emailService": {
+    "schema": {
+      "url": "/api/sendEmail",
+      "body": {
+        "type": "object",
+        "properties": {
+          "emailId": {
+            "type": "string"
+          }
+        },
+        "required": ["emailId"]
       }
     }
   }

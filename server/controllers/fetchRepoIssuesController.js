@@ -8,20 +8,24 @@ async function fetchRepoIssuesController(req, res) {
       error: "Missing required fields: 'owner' and/or 'repoLink'",
     });
   }
+  const options = {
+    method: "GET",
+    url: `https://api.github.com/repos/${owner}/${repoLink}/issues`,
+    params: {
+      state: "open",
+      per_page: 100,
+    },
+    headers: {
+      Accept: "application/vnd.github+json",
+      "User-Agent": "public-issue-fetcher",
+    },
+  };
 
-  const url = `https://api.github.com/repos/${owner}/${repoLink}/issues`;
+  console.log("🔗 API: Get Issues for Repository");
+  console.log("📦 Axios Request Options:", options);
 
   try {
-    const response = await axios.get(url, {
-      params: {
-        state: "open",
-        per_page: 100,
-      },
-      headers: {
-        Accept: "application/vnd.github+json",
-        "User-Agent": "public-issue-fetcher",
-      },
-    });
+    const response = await axios(options);
 
     const issues = response.data
       .filter((issue) => !issue.pull_request)
@@ -30,12 +34,13 @@ async function fetchRepoIssuesController(req, res) {
         title: issue.title,
         url: issue.html_url,
       }));
+    console.log("Fetched Issues List: ", issues);
 
-    return res.status(200).send({ status: success, issues });
+    return res.status(200).send({ status: "success", response: issues });
   } catch (error) {
     console.error(
       "Error fetching issues:",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
 
     return res.status(400).send({
