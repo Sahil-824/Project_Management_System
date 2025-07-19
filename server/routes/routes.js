@@ -1,10 +1,10 @@
-const fetchPublicRepoIssues = require("../controllers/pullRequestFetchController");
+const fetchRepoIssuesController = require("../controllers/fetchRepoIssuesController");
 const schema = require("../config/schema.json");
 async function routes(fastify) {
   fastify.post(
     schema.githubApis["pullRequestFetch"].schema.url,
     schema.githubApis["pullRequestFetch"],
-    fetchPublicRepoIssues,
+    fetchRepoIssuesController
   );
 }
 
