@@ -1,46 +1,64 @@
-import React, { useState } from 'react';
-import './LoginPopup.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import "./LoginPopup.css";
+import { useNavigate } from "react-router-dom";
 
 const LoginSignup = ({ onLogin, onSignup }) => {
+  console.log("hello");
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    accessToken: '',
-    role: 'client', // default role
+    username: "",
+    email: "",
+    password: "",
+    accessToken: "",
+    role: "client", // default role
   });
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (isLogin) {
-    //   onLogin({ username: formData.username, password: formData.password, role: formData.role });
-    // } else {
-    //   onSignup(formData);
-    // }        
+    let responseData;
 
-    // Navigate based on role
-    if (formData.role === 'admin') {
-      navigate('/admin/dashboard');
+    if (isLogin) {
+      responseData = await onLogin({
+        username: formData.username,
+        password: formData.password,
+        role: formData.role,
+      });
     } else {
-      navigate('/client/dashboard');
+      responseData = await onSignup(formData);
+    }
+    console.log("adsasdasd", responseData);
+    // Navigate based on role
+    if (responseData?.message === "Login successful") {
+      if (formData.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/client/dashboard");
+      }
+    } else {
+      // Optionally handle error display here
+      console.error("Login/Signup failed");
+      // e.g., setError('Invalid credentials')
     }
   };
 
   return (
     <div className="auth-container">
       <div className="auth-box">
-        <h2>{isLogin ? 'Login' : 'Signup'}</h2>
+        <h2>{isLogin ? "Login" : "Signup"}</h2>
 
         <form onSubmit={handleSubmit} className="auth-form">
-          <select name="role" value={formData.role} onChange={handleChange} required>
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            required
+          >
             <option value="client">Client</option>
             <option value="admin">Admin</option>
           </select>
@@ -84,11 +102,13 @@ const LoginSignup = ({ onLogin, onSignup }) => {
             required
           />
 
-          <button type="submit">{isLogin ? 'Login' : 'Signup'}</button>
+          <button type="submit">{isLogin ? "Login" : "Signup"}</button>
         </form>
 
         <p onClick={() => setIsLogin(!isLogin)} className="toggle-link">
-          {isLogin ? "Don't have an account? Signup" : 'Already have an account? Login'}
+          {isLogin
+            ? "Don't have an account? Signup"
+            : "Already have an account? Login"}
         </p>
       </div>
     </div>
