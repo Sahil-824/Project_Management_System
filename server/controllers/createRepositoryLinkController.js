@@ -39,7 +39,7 @@ async function createPublicRepo(req, res) {
   } catch (error) {
     console.error(
       "❌ Error Creating Repo:",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     return res.code(400).send({ success: false, error });
   }
