@@ -8,6 +8,11 @@ const {
   clientLogin,
   clientSignup,
 } = require("../controllers/loginSignupController.js");
+const {
+  projectRegistration,
+  addProjectMembers,
+} = require("../controllers/projectRegistrationController.js");
+const authVerification = require("../middlewares/authVerification.js");
 const createNewIssue = require("../controllers/createIssueController");
 const createPublicRepo = require("../controllers/createRepositoryLinkController");
 async function routes(fastify) {
@@ -58,6 +63,20 @@ async function routes(fastify) {
     schema.githubApis["createNewRepo"].schema.url,
     schema.githubApis["createNewRepo"],
     createPublicRepo
+  );
+
+  fastify.route({
+    method: "POST",
+    url: schema.projectRegistration.schema.url,
+    schema: schema.projectRegistration.schema,
+    preHandler: authVerification,
+    handler: projectRegistration,
+  });
+
+  fastify.post(
+    schema.addProjectMembers.schema.url,
+    schema.addProjectMembers,
+    addProjectMembers,
   );
 }
 
