@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Clients = require("../models/clientSchema");
 
-
 const getClientProjects = async (req, reply) => {
   try {
     const { clientId } = req.query;
