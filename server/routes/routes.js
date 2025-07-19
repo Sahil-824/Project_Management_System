@@ -16,6 +16,7 @@ const authVerification = require("../middlewares/authVerification.js");
 const createNewIssue = require("../controllers/createIssueController");
 const createPublicRepo = require("../controllers/createRepositoryLinkController");
 const fetchProjectById = require("../controllers/fetchProjectDetailsController.js");
+const getClientProjects = require("../controllers/fetchProjectWrtClient.js");
 async function routes(fastify) {
   // fastify.post(
   //   schema.githubApis["pullRequestFetch"].schema.url,
@@ -84,6 +85,12 @@ async function routes(fastify) {
     schema.fetchProjectDetails.schema.url,
     schema.fetchProjectDetails,
     fetchProjectById,
+  );
+
+  fastify.get(
+    schema.fetchProjectwrtClient.schema.url,
+    schema.fetchProjectwrtClient,
+    getClientProjects,
   );
 }
 

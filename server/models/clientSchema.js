@@ -4,7 +4,7 @@ const clientSchema = new mongoose.Schema({
   projectIds: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Project",
+      ref: "Projects", // must match Project model name
     },
   ],
   githubUsername: {
@@ -29,6 +29,5 @@ const clientSchema = new mongoose.Schema({
   },
 });
 
-const Client = mongoose.model("Client", clientSchema);
-
-module.exports = Client;
+const Clients = mongoose.model("Clients", clientSchema);
+module.exports = Clients;

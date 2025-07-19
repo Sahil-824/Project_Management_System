@@ -178,5 +178,18 @@
         "type": "object"
       }
     }
+  },
+  "fetchProjectList": {
+    "schema": {
+      "url": "/api/fetchProjectList",
+      "body": {
+        "type": "object"
+      }
+    }
+  },
+  "fetchProjectwrtClient": {
+    "schema": {
+      "url": "/api/fetchProjectwrtClient"
+    }
   }
 }
