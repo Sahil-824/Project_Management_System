@@ -1,4 +1,5 @@
-require("dotenv/config");
+require("dotenv").config();
+const connectMongoDB = require("./connector/mongo.connector");
 const fastify = require("fastify")({
   logger: true,
   bodyLimit: 10485760,
@@ -7,7 +8,8 @@ const fastify = require("fastify")({
 const path = require("path");
 const routesRegister = require("./routes/routes-register.json");
 global.rootDir = __dirname;
-// require("•/connector/mongo. connector");
+connectMongoDB();
+
 fastify.register(require("@fastify/multipart"));
 fastify.register(require("@fastify/cors"), {});
 routesRegister.forEach((route) =>
