@@ -1,0 +1,14 @@
+{
+  "githubApis": {
+    "pullRequestFetch": {
+      "schema": {
+        "url": "/github/pullRequestFetch",
+        "body": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    }
+  }
+}
