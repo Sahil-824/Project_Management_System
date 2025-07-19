@@ -3,6 +3,8 @@ const schema = require("../config/schema.json");
 const fetchPublicRepoCommits = require("../controllers/fetchCommitHistoryController");
 const fetchPublicRepos = require("../controllers/fetchPublicReposController");
 const fetchPublicRepoPullRequests = require("../controllers/fetchRepoPullRequest");
+const createNewIssue = require("../controllers/createIssueController");
+const createPublicRepo = require("../controllers/createRepositoryLinkController");
 async function routes(fastify) {
   fastify.post(
     schema.githubApis["fetchIssuesList"].schema.url,
@@ -23,6 +25,16 @@ async function routes(fastify) {
     schema.githubApis["fetchPullRequest"].schema.url,
     schema.githubApis["fetchPullRequest"],
     fetchPublicRepoPullRequests,
+  );
+  fastify.post(
+    schema.githubApis["createNewIssue"].schema.url,
+    schema.githubApis["createNewIssue"],
+    createNewIssue,
+  );
+  fastify.post(
+    schema.githubApis["createNewRepo"].schema.url,
+    schema.githubApis["createNewRepo"],
+    createPublicRepo
   );
 }
 

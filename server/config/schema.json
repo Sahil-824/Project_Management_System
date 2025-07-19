@@ -39,6 +39,26 @@
           "required": []
         }
       }
+    },
+    "createNewIssue": {
+      "schema": {
+        "url": "/github/createNewIssue",
+        "body": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    },
+    "createNewRepo": {
+      "schema": {
+        "url": "/github/createNewRepo",
+        "body": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
     }
   }
 }
