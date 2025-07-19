@@ -2,6 +2,8 @@ const Client = require("../models/clientSchema.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const Admin = require("../models/adminSchema");
+
 const clientLogin = async (req, reply) => {
   try {
     const { email, password } = req.body;
@@ -36,6 +38,7 @@ const clientLogin = async (req, reply) => {
   }
 };
 
+
 const clientSignup = async (req, reply) => {
   try {
     const { email, password, githubUsername, clientName } = req.body;
@@ -58,6 +61,19 @@ const clientSignup = async (req, reply) => {
 
     await newClient.save();
 
+    const admin = await Admin.findOne(); 
+    if (admin) {
+      admin.clients.push({
+        clientId: newClient._id,
+        feedback: "",
+        rating: null,
+        createdAt: new Date(),
+      });
+      await admin.save();
+    } else {
+      console.warn("No admin document found. Skipping client push.");
+    }
+
     const payload = {
       id: newClient._id,
       email: newClient.email,
@@ -78,4 +94,4 @@ const clientSignup = async (req, reply) => {
   }
 };
 
-module.exports = { clientLogin, clientSignup };
+module.exports = { clientLogin, clientSignup};

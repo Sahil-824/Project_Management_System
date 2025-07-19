@@ -191,5 +191,10 @@
     "schema": {
       "url": "/api/fetchProjectwrtClient"
     }
+  },
+  "fetchAllClients": {
+    "schema":{
+      "url": "/api/adminDashboard/fetchAllClients"
+    }
   }
 }
