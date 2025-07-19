@@ -88,5 +88,67 @@
         "required": ["email", "password"]
       }
     }
+  },
+  "projectRegistration": {
+    "schema": {
+      "url": "/api/projectRegistration",
+      "body": {
+        "type": "object",
+        "properties": {
+          "projectName": {
+            "type": "string"
+          },
+          "projectDescription": {
+            "type": "string"
+          },
+          "githubRepoUrl": {
+            "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "timeLines": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "projectStatus": {
+            "type": "string",
+            "enum": ["Not Started", "In Progress", "Completed"]
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["projectName", "githubRepoUrl"]
+      }
+    }
+  },
+  "addProjectMembers": {
+    "schema": {
+      "url": "/api/addProjectMembers",
+      "body": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "member": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["projectId", "member"]
+      }
+    }
   }
 }

@@ -12,11 +12,28 @@ const projectSchema = new mongoose.Schema({
       trim: true,
     },
   ],
+  projectStatus: {
+    type: String,
+    enum: ["Not Started", "In Progress", "Completed"],
+    default: "Not Started",
+  },
+  startDate: {
+    type: Date,
+    default: Date.now,
+  },
   timeLines: {
     type: String,
   },
   members: {
     type: [String], // here we can store email for sending notifications...
+  },
+  projectName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  projectDescription: {
+    type: String,
   },
 });
 

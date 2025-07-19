@@ -8,6 +8,11 @@ const {
   clientLogin,
   clientSignup,
 } = require("../controllers/loginSignupController.js");
+const {
+  projectRegistration,
+  addProjectMembers,
+} = require("../controllers/projectRegistrationController.js");
+const authVerification = require("../middlewares/authVerification.js");
 async function routes(fastify) {
   // fastify.post(
   //   schema.githubApis["pullRequestFetch"].schema.url,
@@ -46,6 +51,20 @@ async function routes(fastify) {
     schema.clientSignup.schema.url,
     schema.clientSignup,
     clientSignup,
+  );
+
+  fastify.route({
+    method: "POST",
+    url: schema.projectRegistration.schema.url,
+    schema: schema.projectRegistration.schema,
+    preHandler: authVerification,
+    handler: projectRegistration,
+  });
+
+  fastify.post(
+    schema.addProjectMembers.schema.url,
+    schema.addProjectMembers,
+    addProjectMembers,
   );
 }
 
