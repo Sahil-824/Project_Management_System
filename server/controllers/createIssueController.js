@@ -23,13 +23,13 @@ async function createNewIssue(req, res) {
   try {
     const response = await axios(options);
     console.log(
-      `✅ Issue Created: #${response.data.number} - ${response.data.title}`
+      `✅ Issue Created: #${response.data.number} - ${response.data.title}`,
     );
     return res.status(200).send({ status: "success", response: response.data });
   } catch (error) {
     console.error(
       "❌ Error creating issue:",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     return res.status(400).send({
       error: "Failed to fetch commits",
