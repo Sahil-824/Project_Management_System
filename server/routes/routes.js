@@ -18,13 +18,9 @@ const createPublicRepo = require("../controllers/createRepositoryLinkController"
 const fetchProjectById = require("../controllers/fetchProjectDetailsController.js");
 const getClientProjects = require("../controllers/fetchProjectWrtClient.js");
 const getAdminClients = require("../controllers/fetchAllClients.js");
+const raiseIssueController = require("../controllers/raiseIssueController.js");
 async function routes(fastify) {
-  // fastify.post(
-  //   schema.githubApis["pullRequestFetch"].schema.url,
-  //   schema.githubApis["pullRequestFetch"],
-  //   fetchRepoIssuesController,
-  // );
-  fastify.post( 
+  fastify.post(
     schema.emailService.schema.url,
     schema.emailService,
     emailServicesController,
@@ -98,7 +94,13 @@ async function routes(fastify) {
     schema.fetchAllClients.schema.url,
     schema.fetchAllClients,
     getAdminClients,
-  )
+  );
+
+  fastify.post(
+    schema.issueRaise.schema.url,
+    schema.issueRaise,
+    raiseIssueController,
+  );
 }
 
 module.exports = routes;

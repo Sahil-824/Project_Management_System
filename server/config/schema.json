@@ -193,8 +193,28 @@
     }
   },
   "fetchAllClients": {
-    "schema":{
+    "schema": {
       "url": "/api/adminDashboard/fetchAllClients"
+    }
+  },
+  "issueRaise": {
+    "schema": {
+      "url": "/api/issueRaise",
+      "body": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "issueDescription": {
+            "type": "string"
+          },
+          "assignedTo": {
+            "type": "string"
+          }
+        },
+        "required": ["projectId", "issueDescription", "assignedTo"]
+      }
     }
   }
 }

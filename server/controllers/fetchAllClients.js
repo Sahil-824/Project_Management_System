@@ -10,7 +10,7 @@ const getAdminClients = async (req, reply) => {
 
     const clientData = admin.clients.map((entry) => {
       return {
-        clientInfo: entry.clientId, 
+        clientInfo: entry.clientId,
         feedback: entry.feedback,
         rating: entry.rating,
         createdAt: entry.createdAt,

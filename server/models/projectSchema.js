@@ -24,9 +24,6 @@ const projectSchema = new mongoose.Schema({
   timeLines: {
     type: String,
   },
-  members: {
-    type: [String], // here we can store email for sending notifications...
-  },
   projectName: {
     type: String,
     required: true,

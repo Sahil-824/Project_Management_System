@@ -38,7 +38,6 @@ const clientLogin = async (req, reply) => {
   }
 };
 
-
 const clientSignup = async (req, reply) => {
   try {
     const { email, password, githubUsername, clientName } = req.body;
@@ -61,7 +60,7 @@ const clientSignup = async (req, reply) => {
 
     await newClient.save();
 
-    const admin = await Admin.findOne(); 
+    const admin = await Admin.findOne();
     if (admin) {
       admin.clients.push({
         clientId: newClient._id,
@@ -94,4 +93,4 @@ const clientSignup = async (req, reply) => {
   }
 };
 
-module.exports = { clientLogin, clientSignup};
+module.exports = { clientLogin, clientSignup };
